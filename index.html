@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoodMapper</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.css" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@pyscript/core@0.4.30/dist/core.js"></script>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <header>
+        <h1>🧩 MoodMapper</h1>
+        <p class="subtitle">Аспектный анализ тональности прямо в браузере</p>
+    </header>
+
+    <main>
+        <!-- Переключатель режимов -->
+        <section class="mode-switcher">
+            <label class="mode-option">
+                <input type="radio" name="mode" value="single" checked />
+                <span>✍️ Одиночный отзыв</span>
+            </label>
+            <label class="mode-option">
+                <input type="radio" name="mode" value="batch" />
+                <span>📂 Пакетная обработка (CSV)</span>
+            </label>
+        </section>
+
+        <!-- Одиночный режим -->
+        <section class="input-section" id="single-mode">
+            <label for="input-text">Введи текст для анализа:</label>
+            <textarea 
+                id="input-text" 
+                rows="6" 
+                placeholder="Например: Пицца была вкусной, но доставка опоздала на час..."
+            ></textarea>
+            <button id="analyze-btn" disabled>Загрузка модели...</button>
+        </section>
+
+        <!-- Пакетный режим -->
+        <section class="input-section" id="batch-mode" style="display: none;">
+            <label for="csv-file">Загрузите CSV-файл с отзывами:</label>
+            <p class="hint">
+                Формат: <code>id,text</code> — без заголовков.<br>
+                Каждая строка: <code>1,"Текст отзыва"</code>
+            </p>
+            
+            <div class="file-input-wrapper">
+                <input type="file" id="csv-file" accept=".csv,text/csv" />
+                <button id="download-template-btn" type="button" class="secondary-btn">
+                    📥 Скачать шаблон
+                </button>
+            </div>
+
+            <div id="csv-info" class="csv-info" style="display: none;"></div>
+
+            <div class="batch-actions">
+                <button id="process-batch-btn" disabled>Обработать</button>
+                <button id="pause-batch-btn" class="secondary-btn" style="display: none;">
+                    ⏸️ Пауза
+                </button>
+                <button id="cancel-batch-btn" class="secondary-btn" style="display: none;">
+                    ⏹️ Отменить
+                </button>
+            </div>
+
+            <!-- Прогресс-бар -->
+            <div id="batch-progress-wrapper" style="display: none;">
+                <div class="batch-progress-info">
+                    <span id="batch-progress-text">Обработка...</span>
+                    <span id="batch-progress-percent">0%</span>
+                </div>
+                <div class="batch-progress-bar">
+                    <div id="batch-progress-fill" class="batch-progress-fill"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Результаты -->
+        <section class="results-section">
+            <h2>Результаты</h2>
+            <div id="status">⏳ Загружаем модель, подожди...</div>
+            <div id="results"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Работает на PyScript + Hugging Face 🤗</p>
+    </footer>
+
+    <script type="py" src="./main.py" config="./pyscript.json"></script>
+</body>
+</html>

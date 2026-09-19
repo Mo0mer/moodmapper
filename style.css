@@ -1,0 +1,590 @@
+/* ═══════════════════════════════════════════════════════════════
+   MoodMapper — Минималистичный стиль
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── Базовые сбросы ─── */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    line-height: 1.5;
+}
+
+/* ─── Заголовок ─── */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    color: #222;
+}
+
+.subtitle {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* ─── Основной контейнер ─── */
+main {
+    max-width: 860px;
+    margin: 0 auto;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1.5rem;
+}
+
+/* ─── Переключатель режимов ─── */
+.mode-switcher {
+    display: flex;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.mode-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.75rem 1rem;
+    font-weight: 500;
+    font-size: 0.95rem;
+    user-select: none;
+    flex: 1;
+    background: #fafafa;
+    transition: background 0.15s;
+}
+
+.mode-option + .mode-option {
+    border-left: 1px solid #e0e0e0;
+}
+
+.mode-option:hover {
+    background: #f0f0f0;
+}
+
+.mode-option input[type="radio"] {
+    cursor: pointer;
+    accent-color: #333;
+    width: 16px;
+    height: 16px;
+}
+
+.mode-option:has(input:checked) {
+    background: #fff;
+    font-weight: 600;
+}
+
+.mode-option:has(input:checked) span {
+    color: #222;
+}
+
+/* ─── Формы ─── */
+.input-section {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: border-color 0.15s;
+    background: #fff;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.hint {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+    line-height: 1.5;
+}
+
+.hint code {
+    background: #f0f0f0;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 0.85em;
+    color: #333;
+}
+
+/* ─── Кнопки ─── */
+button {
+    padding: 0.65rem 1.25rem;
+    background: #333;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 4px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+button:hover:not(:disabled) {
+    background: #000;
+    border-color: #000;
+}
+
+button:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    cursor: not-allowed;
+}
+
+.secondary-btn {
+    background: #fff;
+    color: #333;
+    border: 1px solid #d0d0d0;
+}
+
+.secondary-btn:hover:not(:disabled) {
+    background: #f0f0f0;
+    border-color: #999;
+}
+
+.export-btn {
+    background: #2e7d32;
+    border-color: #2e7d32;
+}
+
+.export-btn:hover:not(:disabled) {
+    background: #1b5e20;
+    border-color: #1b5e20;
+}
+
+/* ─── Пакетный режим ─── */
+.file-input-wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 0.5rem;
+}
+
+.file-input-wrapper input[type="file"] {
+    flex: 1;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+    background: #fafafa;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.9rem;
+    min-width: 220px;
+}
+
+.file-input-wrapper input[type="file"]:hover {
+    border-color: #999;
+}
+
+.csv-info {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: #f1f8f4;
+    border: 1px solid #c8e6c9;
+    border-left: 3px solid #4CAF50;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.csv-info.error {
+    background: #fdecea;
+    border-color: #f5c6cb;
+    border-left-color: #F44336;
+}
+
+.batch-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+/* ─── Прогресс-бар пакетной обработки ─── */
+#batch-progress-wrapper {
+    margin-top: 1rem;
+    padding: 0.75rem 1rem;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.batch-progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+#batch-progress-percent {
+    color: #333;
+    font-weight: 600;
+}
+
+.batch-progress-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.batch-progress-fill {
+    height: 100%;
+    background: #333;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+/* ─── Секция результатов ─── */
+.results-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.results-section h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.75rem;
+}
+
+#status {
+    padding: 0.6rem 0.75rem;
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+#results {
+    min-height: 60px;
+}
+
+/* ─── Итоговая карточка ─── */
+.summary {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+}
+
+.summary h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.summary-stats {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+}
+
+.stat {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.stat-value {
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: #333;
+}
+
+.stat-positive .stat-value { color: #2e7d32; }
+.stat-negative .stat-value { color: #c62828; }
+.stat-neutral .stat-value { color: #e65100; }
+
+/* ─── Прогресс-бар тональностей ─── */
+.progress-bar {
+    display: flex;
+    height: 20px;
+    border-radius: 3px;
+    overflow: hidden;
+    background: #e0e0e0;
+    border: 1px solid #e0e0e0;
+}
+
+.progress-segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.75rem;
+    transition: width 0.3s ease;
+}
+
+.progress-positive { background: #4CAF50; }
+.progress-negative { background: #F44336; }
+.progress-neutral { background: #FF9800; }
+
+/* ─── Карточки аспектов ─── */
+.aspect-cards {
+    display: grid;
+    gap: 0.5rem;
+}
+
+.aspect-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-left: 3px solid #ccc;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+}
+
+.aspect-card.positive { border-left-color: #4CAF50; }
+.aspect-card.negative { border-left-color: #F44336; }
+.aspect-card.neutral { border-left-color: #FF9800; }
+
+.aspect-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.35rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.aspect-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #222;
+}
+
+.aspect-badge {
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.badge-positive { background: #4CAF50; }
+.badge-negative { background: #F44336; }
+.badge-neutral { background: #FF9800; }
+
+.aspect-context {
+    font-size: 0.85rem;
+    color: #666;
+    font-style: italic;
+    margin-bottom: 0.35rem;
+}
+
+.aspect-confidence {
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.confidence-bar {
+    height: 3px;
+    background: #eee;
+    border-radius: 2px;
+    margin-top: 0.35rem;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.confidence-fill.positive { background: #4CAF50; }
+.confidence-fill.negative { background: #F44336; }
+.confidence-fill.neutral { background: #FF9800; }
+
+/* ─── Топ-аспекты ─── */
+.top-aspects {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    margin-top: 1rem;
+}
+
+.top-aspects h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.top-aspects ul {
+    list-style: none;
+    padding: 0;
+}
+
+.top-aspects li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e8e8e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.top-aspects li:last-child {
+    border-bottom: none;
+}
+
+.top-aspects .aspect-label {
+    font-weight: 500;
+    color: #333;
+}
+
+.top-aspects .aspect-count {
+    color: #666;
+    font-size: 0.85rem;
+}
+
+/* ─── Футер ─── */
+footer {
+    text-align: center;
+    color: #999;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+}
+
+/* ─── Адаптив ─── */
+@media (max-width: 600px) {
+    body { padding: 1rem 0.5rem; }
+    main { padding: 1rem; }
+    header h1 { font-size: 1.4rem; }
+    .summary-stats { flex-direction: column; gap: 0.5rem; }
+    .file-input-wrapper { flex-direction: column; align-items: stretch; }
+    .file-input-wrapper input[type="file"] { min-width: 0; }
+}
+
+/* ─── Разбивка по отзывам (пакетный режим) ─── */
+.review-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-left: 3px solid #ccc;
+    border-radius: 4px;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.review-card.review-positive { border-left-color: #4CAF50; }
+.review-card.review-negative { border-left-color: #F44336; }
+.review-card.review-neutral  { border-left-color: #FF9800; }
+
+.review-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.review-id {
+    font-weight: 600;
+    color: #222;
+    font-size: 0.95rem;
+}
+
+.review-verdict {
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.verdict-positive { background: #4CAF50; }
+.verdict-negative { background: #F44336; }
+.verdict-neutral  { background: #FF9800; }
+
+.review-text {
+    color: #666;
+    font-style: italic;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.review-aspects {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 0.4rem;
+}
+
+.review-aspect-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    padding: 0.15rem 0;
+}
+
+.review-aspect-name {
+    flex: 1;
+    color: #333;
+}
+
+.review-aspect-sent {
+    font-weight: 600;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.sent-positive { color: #2e7d32; }
+.sent-negative { color: #c62828; }
+.sent-neutral  { color: #e65100; }
+
+.review-aspect-conf {
+    color: #999;
+    font-size: 0.8rem;
+    min-width: 40px;
+    text-align: right;
+}
